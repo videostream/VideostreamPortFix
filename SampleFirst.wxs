@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='windows-1252'?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi' xmlns:fire='http://schemas.microsoft.com/wix/FirewallExtension'>
+  <Product Name='Videostream Port Fixer' Id='e5b268f5-86C7-4D14-AEC0-86416A69ABDE' UpgradeCode='e5b268f5-7349-453F-94F6-BCB5110BA4FD'
+    Language='1033' Codepage='1252' Version='2.0.0' Manufacturer='Videostream, Inc.'>
+
+    <Package Id='*' Keywords='Installer' Description="Videostream Port Fix Installer" Manufacturer='Videostream, inc.'
+      InstallerVersion='200' Languages='1033' Compressed='yes' SummaryCodepage='1252' Platform='x86'/>
+
+    <Media Id='1' Cabinet='Sample.cab' EmbedCab='yes' DiskPrompt="NO PROMPT" />
+    <Property Id='DiskPrompt' Value="Videostream Port Fixer" />
+
+    <Directory Id='TARGETDIR' Name='SourceDir'>
+      <Component Id='MainExecutable' Guid='e5b268f5-83F1-4F22-985B-FDB3C8ABD471'>
+        <fire:FirewallException Id="FWX1" Name="Videostream" Port="5556" Protocol="tcp" Scope="any" />
+        <fire:FirewallException Id="FWX2" Name="Videostream Mobile" Port="5558" Protocol="tcp" Scope="any" /> 
+      </Component>
+    </Directory>
+
+    <Feature Id='Complete' Level='1'>
+      <ComponentRef Id='MainExecutable' />
+    </Feature>
+
+  </Product>
+</Wix>
